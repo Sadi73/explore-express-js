@@ -18,24 +18,12 @@ app.get('/', (req, res) => {
 
 // Handle 404 errors. This should be the last route handler, after all other routes have been defined.
 app.use((req, res, next) => {
-    res.status(404).json({
-        message: 'Not Found',
-        path: req.originalUrl,
-    });
-});
-// Handle 404 errors. This should be the last route handler, after all other routes have been defined.
-app.use((req, res, next) => {
-    res.status(404).json({
-        message: 'Not Found',
-        path: req.originalUrl,
-    });
+    return sendError(res, 'Not Found', 404);
 });
 
 // Handle server errors (500).
 app.use((err, req, res, next) => {
-    res.status(500).json({
-        message: 'Internal Server Error',
-    });
+    return sendError(res, 'Internal Server Error', 500);
 });
 
 module.exports = app;
