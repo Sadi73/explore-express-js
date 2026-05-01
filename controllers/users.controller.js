@@ -1,7 +1,8 @@
 const users = require("../models/users.model");
+const { sendSuccess } = require("../utils/response");
 
 const getUsers = (req, res) => {
-    res.json(users);
+    return sendSuccess(res, users, 'Users fetched successfully');
 };
 
 module.exports = getUsers;
