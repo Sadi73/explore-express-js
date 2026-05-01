@@ -1,12 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const { userRouter } = require('./routes/users.routes');
+const { employeeRouter } = require('./routes/employees.route');
 
 const app = express();
 
 app.use(cors());
 
 app.use(userRouter);
+app.use(employeeRouter);
 
 app.get('/', (req, res) => {
     res.send('Server is running!')
