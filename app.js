@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { userRouter } = require('./routes/users.routes');
+const { userRouter } = require('./routes/users.route');
 const { employeeRouter } = require('./routes/employees.route');
 const { sendError } = require('./utils/response');
 
