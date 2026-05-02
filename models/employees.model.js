@@ -11,6 +11,14 @@ const employeeSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    companyId: {
+        type: Number,
+        required: true,
+    },
+    companyName: {
+        type: String,
+        required: true,
+    },
     position: {
         type: String,
         required: true,

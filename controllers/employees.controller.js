@@ -42,4 +42,20 @@ const updateEmployee = async (req, res) => {
     }
 };
 
-module.exports = { getAllEmployees, createEmployee, updateEmployee };
+const deleteEmployee = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deletedEmployee = await Employees.findByIdAndDelete(id);
+
+        if (!deletedEmployee) {
+            return sendError(res, 'Employee not found', 404);
+        }
+
+        return sendSuccess(res, deletedEmployee, 'Employee deleted successfully');
+    } catch (err) {
+        return sendError(res, 'Error deleting employee', 400);
+    }
+};
+
+module.exports = { getAllEmployees, createEmployee, updateEmployee, deleteEmployee };
