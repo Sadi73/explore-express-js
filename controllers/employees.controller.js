@@ -1,20 +1,21 @@
 const Employees = require("../models/employees.model");
+const { sendSuccess, sendError } = require("../utils/response");
 
 const getAllEmployees = async (req, res) => {
     try {
         const employees = await Employees.find();
-        res.json(employees);
+        return sendSuccess(res, employees, 'Employees fetched successfully');
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching employees', error: error.message });
+        return sendError(res, 'Error fetching employees', 500);
     }
 };
 
 const createEmployee = async (req, res) => {
     try {
         const employee = await Employees.create(req.body);
-        res.status(201).json(employee);
+        return sendSuccess(res, employee, 'Employee created successfully');
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        return sendError(res, 'Error creating employee', 400);
     }
 };
 
@@ -32,12 +33,12 @@ const updateEmployee = async (req, res) => {
         );
 
         if (!updatedEmployee) {
-            return res.status(404).json({ message: "Employee not found" });
+            return sendError(res, 'Employee not found', 404);
         }
 
-        res.status(200).json(updatedEmployee);
+        return sendSuccess(res, updatedEmployee, 'Employee updated successfully');
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        return sendError(res, 'Error updating employee', 400);
     }
 };
 

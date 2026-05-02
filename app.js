@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { userRouter } = require('./routes/users.routes');
 const { employeeRouter } = require('./routes/employees.route');
+const { sendError } = require('./utils/response');
 
 const app = express();
 
