@@ -3,6 +3,7 @@ const cors = require('cors');
 const { userRouter } = require('./routes/users.route');
 const { employeeRouter } = require('./routes/employees.route');
 const { sendError } = require('./utils/response');
+const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 
@@ -22,9 +23,7 @@ app.use((req, res, next) => {
     return sendError(res, 'Not Found', 404);
 });
 
-// Handle server errors (500).
-app.use((err, req, res, next) => {
-    return sendError(res, 'Internal Server Error', 500);
-});
+// Centralized error handling middleware
+app.use(errorHandler);
 
 module.exports = app;
