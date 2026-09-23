@@ -1,5 +1,6 @@
 const express = require("express");
-const sendSuccess = require("../utils/response");
+const sendSuccess = require("../../utils/response");
+const upload = require("../../middlewares/multer.middleware");
 
 const router = express.Router();
 
@@ -26,6 +27,12 @@ router.post("/create", (req, res) => {
     const payload = req.body;
     console.log(payload)
     sendSuccess(res, payload, "POST request received: Data created successfully", 201);
+});
+
+router.post("/create-with-file", upload.single('file'), (req, res) => {
+    const payload = req.body;
+    const fileInfo = req.file;
+    sendSuccess(res, { payload, fileInfo }, "POST request received: Data created successfully", 201);
 });
 
 router.put("/update", (req, res) => {

@@ -1,7 +1,8 @@
 const express = require("express");
 const notFoundMiddleware = require("./middlewares/notFound.middleware");
 const errorMiddleware = require("./middlewares/error.middleware");
-const demoRoute = require("./routes/demo.route");
+const demoRoute = require("./routes/demo/demo.route");
+const fileRoute = require("./routes/demo/file.route");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/demo", demoRoute);
+app.use("/api/v1/files", fileRoute);
 
 // 404 Not Found Route Handler
 app.use(notFoundMiddleware);
