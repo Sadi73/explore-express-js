@@ -75,5 +75,3 @@ process.on("uncaughtException", (error) => {
     console.error("Uncaught Exception thrown:", error);
     handleShutdown("UNCAUGHT_EXCEPTION");
 });
-
-
